@@ -36,22 +36,6 @@ function inicio() {
 
 inicio();
 
-
-const btn = document.querySelector("#btn");
-const nome = document.querySelector("#nome").value;
-
-btn.addEventListener("click", () =>{
-    let selected = escolha.value; 
-    alert(selected);
-    if(selected == "css"){
-        cssQuiz();
-    } else if (selected == "html" ) {
-        htmlQuiz();
-    } else {
-        jsQuiz();
-    } 
-})
-
 let j = 0;
 function jsQuiz() {
     const sub = document.querySelector("#sub")
@@ -232,6 +216,8 @@ function conclusao() {
     inicio()   
 });
 }
+
+
 
 
 
