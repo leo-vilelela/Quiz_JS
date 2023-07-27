@@ -2,6 +2,7 @@ import {quizCSS} from "./cssQuestion.js" ;
 import {quizHTML} from "./htmlQuestion.js" ;
 import {quizJS } from "./jsQuestion.js" ;
 
+
 const formulario = document.querySelector("#formulario");
 function inicio() {
     const sub = document.querySelector("#sub")
@@ -51,8 +52,8 @@ function jsQuiz() {
         formulario.innerHTML+=`
     <div class="resposta">
     <label>
-       <input type="radio" name="resposta" value="${i}">
-       ${quizJS[j].alternativas[i]}
+        <input type="radio" name="resposta" value="${i}">
+        ${quizJS[j].alternativas[i]}
         </label>
     </div>
         `
@@ -94,7 +95,7 @@ function htmlQuiz() {
         <label>
         <input type="radio" name="resposta" value="${i}">
         ${quizHTML[j].alternativas[i]}
-     </label>
+        </label>
     </div>
         `
     };   
@@ -135,7 +136,7 @@ function cssQuiz() {
     <label>
     <input type="radio" name="resposta" value="${i}">
     ${quizCSS[j].alternativas[i]}
-     </label>
+        </label>
     </div>
         `
     };   
@@ -161,8 +162,10 @@ function cssQuiz() {
 }
 
 function conclusao() {
-    const principal = document.querySelector("main")
-    principal.innerHTML=`<h1>Resultados</h1>
+
+    let ct =document.getElementById("centro") 
+    ct.innerHTML=`
+    <h1>Resultados</h1> 
     <table>
         <thead>
             <tr>
@@ -221,9 +224,13 @@ function conclusao() {
     </div>
     <button type="button" id="start">Reiniciar Quiz</button>
     `
-    const start = document.querySelector("#start");
+    const tit = document.getElementById("#titulo")
+    const sub = document.getElementById("#sub")
+    tit.innerText=`Quiz SoulCode`
+    sub.innerText=`Teste seu conhecimento de Css!`
+    
+    const start = document.getElementById("#start");
     start.addEventListener("click", () => {
-        j=0;
     inicio()   
 });
 }
