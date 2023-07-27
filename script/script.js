@@ -93,7 +93,7 @@ function htmlQuiz() {
     <div class="resposta">
         <label>
         <input type="radio" name="resposta" value="${i}">
-        ${quizJS[j].alternativas[i]}
+        ${quizHTML[j].alternativas[i]}
      </label>
     </div>
         `
@@ -134,7 +134,7 @@ function cssQuiz() {
     <div class="resposta">
     <label>
     <input type="radio" name="resposta" value="${i}">
-    ${quizJS[j].alternativas[i]}
+    ${quizCSS[j].alternativas[i]}
      </label>
     </div>
         `
