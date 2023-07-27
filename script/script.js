@@ -3,10 +3,7 @@ import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
 
 
-
 let contadorQuestao = 0;
-const formulario = document.querySelector("#formulario");
-
 function inicio() {
     contadorQuestao = 0;
     const content = document.querySelector("#principal");
@@ -55,7 +52,6 @@ function jsQuiz() {
         <h3>${quizJS[contadorQuestao].pergunta}</h3>
             </div>
         </div>
-
     `
 
     for (let i = 0; i <= 3; i++) {
@@ -66,25 +62,6 @@ function jsQuiz() {
                 ${quizJS[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
-
-    </div>`
-
-    for(let i=0;i <=3; i++){
-        formulario.innerHTML+=`
-    <div class="resposta">
-    <label>
-        <input type="radio" name="resposta" value="${i}">
-        ${quizJS[j].alternativas[i]}
-        </label>
-    </div>
-        `
-    };   
-    formulario.innerHTML+=`
-    <div class="proxima">
-        <button type="button" id="next">Proxima questão</button>
-    </div>
-        <button type="button" id="start">Reiniciar Quiz</button>
-
         `
     };
     content.innerHTML += `
@@ -116,7 +93,6 @@ function htmlQuiz() {
                 <h3>${quizHTML[contadorQuestao].pergunta}</h3>
             </div>
         </div>
-
     `
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
@@ -126,23 +102,6 @@ function htmlQuiz() {
                 ${quizHTML[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
-
-    </div>`
-    for(let i=0;i <=3; i++){
-        formulario.innerHTML+=`
-    <div class="resposta">
-        <label>
-        <input type="radio" name="resposta" value="${i}">
-        ${quizHTML[j].alternativas[i]}
-        </label>
-    </div>
-        `
-    };   
-    formulario.innerHTML+=`
-    <div class="proxima">
-        <button type="button" id="next">Proxima questão</button>
-    </div>
-        <button type="button" id="start">Reiniciar Quiz</button>
         `
     };
     content.innerHTML += `
@@ -174,7 +133,6 @@ function cssQuiz() {
                 <h3>${quizCSS[contadorQuestao].pergunta}</h3>
             </div>
         </div>
-
     `
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
@@ -184,24 +142,6 @@ function cssQuiz() {
             ${quizCSS[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
-
-    </div>`
-    for(let i=0;i <=3; i++){
-        formulario.innerHTML+=`
-    <div class="resposta">
-    <label>
-    <input type="radio" name="resposta" value="${i}">
-    ${quizCSS[j].alternativas[i]}
-        </label>
-    </div>
-        `
-    };   
-    formulario.innerHTML+=`
-    <div class="proxima">
-        <button type="button" id="next">Proxima questão</button>
-    </div>
-        <button type="button" id="start">Reiniciar Quiz</button>
-
         `
     };
     content.innerHTML += `
@@ -224,46 +164,11 @@ function cssQuiz() {
 }
 
 function conclusao() {
-
     let ct = document.querySelector("#principal")
     ct.innerHTML = `
         <h1>Resultados</h1> 
         <h2 id="titulo"></h2>
         <h2 id="sub"></h2>
-
-    let ct =document.getElementById("centro") 
-    ct.innerHTML=`
-    <h1>Resultados</h1> 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Tempo</th>
-                <th>Data Quiz</th>
-                <th>Pontuação</th>
-            </tr>
-        </thead>
-        <tbody id="quiz-results">
-        </tbody>
-    </table>
-
-    <p>Média de acertos: <span id="media-acertos">--</span></p>
-    <p>Média de erros: <span id="media-erros">--</span></p>
-
-    <div class="rank-tables">
-        <table>
-            <caption>Tema HTML</caption>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Nome</th>
-                    <th>Pontuação</th>
-                </tr>
-            </thead>
-            <tbody id="html-rank">
-            </tbody>
-        </table>
-
         <table>
             <thead>
                 <tr>
@@ -322,24 +227,10 @@ function conclusao() {
         </div>
         <button type="button" id="start">Reiniciar Quiz</button>
     `
-
     const tit = document.querySelector("#titulo")
     const sub = document.querySelector("#sub")
     tit.innerText = `Quiz SoulCode`
     sub.innerText = `Teste seu conhecimento de Css!`
-
-    const tit = document.getElementById("#titulo")
-    const sub = document.getElementById("#sub")
-    tit.innerText=`Quiz SoulCode`
-    sub.innerText=`Teste seu conhecimento de Css!`
-    
-    const start = document.getElementById("#start");
-    start.addEventListener("click", () => {
-    inicio()   
-});
-}
-
-
 
     reiniciar()
 }
