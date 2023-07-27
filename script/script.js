@@ -39,17 +39,21 @@ inicio();
 let j = 0;
 function jsQuiz() {
     const sub = document.querySelector("#sub")
-    sub.innerText=`Teste seu conhecimento de JavaScript!!!`
+    sub.innerText=`Teste seu conhecimento de JavaScript!`
     formulario.innerHTML=`
     <div id="questao">
     <div class="resposta">
     <h3>${quizJS[j].pergunta}</h3>
         </div>
     </div>`
+
     for(let i=0;i <=3; i++){
         formulario.innerHTML+=`
     <div class="resposta">
-        <buttom type="submit">${quizJS[j].alternativas[i]}</buttom>
+    <label>
+       <input type="radio" name="resposta" value="${i}">
+       ${quizJS[j].alternativas[i]}
+        </label>
     </div>
         `
     };   
@@ -74,9 +78,10 @@ function jsQuiz() {
 });
 }
 
+
 function htmlQuiz() {
     const sub = document.querySelector("#sub")
-    sub.innerText=`Teste seu conhecimento de Html!!!`
+    sub.innerText=`Teste seu conhecimento de Html!`
     formulario.innerHTML=`
     <div id="questao">
         <div class="resposta">
@@ -86,7 +91,10 @@ function htmlQuiz() {
     for(let i=0;i <=3; i++){
         formulario.innerHTML+=`
     <div class="resposta">
-        <buttom type="submit">${quizHTML[j].alternativas[i]}</buttom>
+        <label>
+        <input type="radio" name="resposta" value="${i}">
+        ${quizJS[j].alternativas[i]}
+     </label>
     </div>
         `
     };   
@@ -114,7 +122,7 @@ function htmlQuiz() {
 
 function cssQuiz() {
     const sub = document.querySelector("#sub")
-    sub.innerText=`Teste seu conhecimento de Css!!!`
+    sub.innerText=`Teste seu conhecimento de Css!`
     formulario.innerHTML=`
     <div id="questao">
         <div class="resposta">
@@ -124,7 +132,10 @@ function cssQuiz() {
     for(let i=0;i <=3; i++){
         formulario.innerHTML+=`
     <div class="resposta">
-        <buttom type="submit">${quizCSS[j].alternativas[i]}</buttom>
+    <label>
+    <input type="radio" name="resposta" value="${i}">
+    ${quizJS[j].alternativas[i]}
+     </label>
     </div>
         `
     };   
