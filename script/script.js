@@ -8,26 +8,29 @@ function inicio() {
     contadorQuestao = 0;
     const content = document.querySelector("#principal");
     content.innerHTML = " ";
-    const sub = document.querySelector("#sub")
-    sub.innerText = `Insira seu nome e selecione um tema`
+    const sub = document.querySelector("#sub");
+    sub.innerText = `Insira seu nome e selecione um tema`;
     content.innerHTML = `
         <form>
             <label for="nome"> Nome</label>
             <input type="text" id="nome">
             <label for="tema">Tema</label>
-            <select name="tema" id="tema" >
+            <select name="tema" id="tema">
             <option value="html">HTML</option>
             <option value="css">CSS</option>
             <option value="js">JavaScript</option>
             </select>
             <button type="button" id="btn">Iniciar Quiz</button>
         </form>
-    `
+    `;
     const btn = document.querySelector("#btn");
     btn.addEventListener("click", () => {
         const escolha = document.querySelector("#tema");
+        const nome = document.querySelector("#nome").value;
 
-        if (escolha.value == "css") {
+        if (nome === "") {
+            alert("Por favor, insira seu nome antes de continuar.");
+        } else if (escolha.value == "css") {
             cssQuiz();
         } else if (escolha.value == "html") {
             htmlQuiz();
@@ -35,7 +38,7 @@ function inicio() {
             jsQuiz();
         }
 
-    })
+    });
 
 }
 
@@ -70,17 +73,23 @@ function jsQuiz() {
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
     `
-    const next = document.querySelector("#next")
+    const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-        contadorQuestao++
-        if (contadorQuestao == 10) {
-            conclusao();
-        } else {
+    contadorQuestao++;
+    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    if (contadorQuestao === 10) {
+        conclusao();
+    } else {
+        if (selectedAnswer?.value !== undefined) {
             jsQuiz();
+        } else {
+            alert("Por favor, selecione uma opção.");
         }
-    });
+    }
+});
     reiniciar();
 }
+
 
 
 function htmlQuiz() {
@@ -110,16 +119,21 @@ function htmlQuiz() {
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
     `
-    const next = document.querySelector("#next")
+    const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-        contadorQuestao++
-        if (contadorQuestao == 10) {
-            conclusao();
+    contadorQuestao++;
+    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    if (contadorQuestao === 10) {
+        conclusao();
+    } else {
+        if (selectedAnswer?.value !== undefined) {
+            jsQuiz();
         } else {
-            htmlQuiz();
+            alert("Por favor, selecione uma opção.");
         }
-    });
-    reiniciar()
+    }
+});
+    reiniciar();
 }
 
 
@@ -150,16 +164,20 @@ function cssQuiz() {
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
     `
-    const next = document.querySelector("#next")
+    const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-        contadorQuestao++;
-        if (contadorQuestao == 10) {
-            conclusao();
+    contadorQuestao++;
+    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    if (contadorQuestao === 10) {
+        conclusao();
+    } else {
+        if (selectedAnswer?.value !== undefined) {
+            jsQuiz();
         } else {
-            cssQuiz();
-
+            alert("Por favor, selecione uma opção.");
         }
-    });
+    }
+});
     reiniciar();
 }
 
