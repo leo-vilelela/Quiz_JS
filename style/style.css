@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,300&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -10,8 +11,7 @@ body{
     align-items: center;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(to bottom right, black, #000044);
-    /* background-color: aqua; */
+     background: linear-gradient(#5d8aa8, white)
 }
 /* width: 100%;
 min-height: 100vh;
@@ -22,11 +22,11 @@ align-items: center; */
     display:flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 20px;
-    align-items: stretch;
-    background-color: rgb(182, 176, 176);
+    margin-top: 10px;
+    background-color: #bed9eb;
+    font-family: 'Roboto Mono', monospace;
     border-radius: 15px;
-    border: 5px solid rgba(166, 166, 180, 0.985);
+    border: 2px solid white;
     padding: 20px;
 }
 
@@ -38,9 +38,18 @@ align-items: center; */
     flex-wrap: wrap;
 }
 
-#btn{
+#btn {
     margin-bottom: 5px;
+    height: 5vh;
+    width: 5vw;
+    align-self: center;
 }
+
+#btn:hover {
+    background-color: #5d8aa8;
+    box-shadow:2px 2px 6px rgba(0, 0, 0, 2); ;
+}
+
 #questao{
     display: flex;
     width: 600px;
@@ -54,8 +63,6 @@ align-items: center; */
     right: 10px;
 }
 
-
-
 .resposta{
     display: flex;
     width: 100%;
@@ -65,21 +72,38 @@ align-items: center; */
 }
 #centro{
     display: flex;
-    background-image: linear-gradient(to bottom right, rgb(182, 176, 176), #000044);
-    padding: 20px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 80vh;
-    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    height: 60vh;
+    width: 35vw;
+    padding: 20px;
+    gap: 10px;
     border-radius: 20px;
-    border: 5px solid rgba(166, 166, 180, 0.985);
+    background-color: white;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 2);
 }
 
 .proxima{
     display: flex;
     width: 100%;
     justify-content: right;
+}
+
+#titulo {
+    color: #5d8aa8;
+    
+}
+
+#next {
+    color: black;
+    height: 3vh;
+    box-shadow:2px 2px 6px rgba(0, 0, 0, 2); ;
+}
+
+#next:hover {
+    background-color: #5d8aa8;
 }
 
 
