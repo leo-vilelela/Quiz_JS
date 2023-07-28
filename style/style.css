@@ -11,6 +11,17 @@ body {
   
   #principal {
     height: 100%;
+=======
+    background: linear-gradient(#5d8aa8, white)
+}
+/* width: 100%;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center; */
+#formulario{
+    display:flex;
+    flex-direction: column;
     width: 100%;
     background-color: #ffffff;
     border-radius: 10px;
