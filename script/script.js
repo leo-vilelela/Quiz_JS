@@ -2,7 +2,9 @@ import { quizCSS } from "./cssQuestion.js";
 import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
 
+let idMode = 1;
 let contadorQuestao = 0;
+let idSom = 0;
 let timerInterval; // Variável para armazenar o intervalo do cronômetro
 function startTimer(duration, display) {
     let timer = duration, hours, minutes, seconds;
@@ -19,6 +21,7 @@ function startTimer(duration, display) {
 }
     }, 1000);
 }
+
 function inicio() {
     contadorQuestao = 0;
     const content = document.querySelector("#principal");
@@ -26,31 +29,43 @@ function inicio() {
     const sub = document.querySelector("#sub");
     sub.innerText = `Insira seu nome e selecione um tema`;
     content.innerHTML = `
-    <form>
-        <label for="nome"> Nome</label>
-        <input type="text" id="nome">
-        <label for="tema">Tema</label>
-        <select name="tema" id="tema">
-        <option value="html">HTML</option>
-        <option value="css">CSS</option>
-          option value="js">JavaScript</option>
-        </select>
-        <button type="button" id="btn">Iniciar Quiz</button>
-    </form>
-    <div id="timer">00:00:00</div> <!-- Elemento para exibir o cronômetro -->
-`;
+        <form>
+            <label for="nome"> Nome</label>
+            <input type="text" id="nome">
+            <label for="tema">Tema</label>
+            <select name="tema" id="tema">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            </select>
+            <button type="button" id="btn">Iniciar Quiz</button>
+        </form>
+        <button type="button" id="mode">mode</button>
+    `;
+
     const btn = document.querySelector("#btn");
+    
+    const mode = document.querySelector("#mode");
+    mode.addEventListener("click", () => {
+        changeMode();
+    });
     btn.addEventListener("click", () => {
         const escolha = document.querySelector("#tema");
         const nome = document.querySelector("#nome").value;
         if (nome === "") {
         alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
-        cssQuiz();
+            idSom = 0;
+            musica();
+            cssQuiz();
         } else if (escolha.value == "html") {
-        htmlQuiz();
+            idSom = 0;
+            musica();
+            htmlQuiz();
         } else {
-        jsQuiz();
+            idSom = 0;
+            musica();
+            jsQuiz();
         }
       // Iniciando o cronômetro ao iniciar o quiz (aqui defini 30 minutos)
         const duration = 60 * 30; // 30 minutos em segundos
@@ -64,10 +79,16 @@ function inicio() {
         if (nome === "") {
             alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
+            musica();
             cssQuiz();
+            idSom = 0;
         } else if (escolha.value == "html") {
+            idSom = 0;
+            musica();
             htmlQuiz();
         } else {
+            idSom = 0;
+            musica();
             jsQuiz();
         }
     
@@ -76,6 +97,7 @@ function inicio() {
         const display = document.querySelector("#timer");
         startTimer(duration, display);
     });
+    
 }
 
 inicio();
@@ -86,12 +108,11 @@ function jsQuiz() {
     sub.innerText = `Teste seu conhecimento de JavaScript!`
     content.innerHTML = `
         <div id="questao">
-        <div class="resposta">
-        <h3>${quizJS[contadorQuestao].pergunta}</h3>
+            <div class="resposta">
+                <h3>${quizJS[contadorQuestao].pergunta}</h3>
             </div>
         </div>
     `
-
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
             <div class="resposta">
@@ -107,6 +128,8 @@ function jsQuiz() {
             <button type="button" id="next">Proxima questão</button>
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
+            <button type="button" id="mode">Mode</button>
+            <button type="button" id="mute">Mute</button>
     `
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
@@ -122,7 +145,15 @@ function jsQuiz() {
         }
     }
 });
+const mode = document.querySelector("#mode");
+        mode.addEventListener("click", () => {
+            changeMode();
+        });
     reiniciar();
+const mute = document.querySelector("#mute");
+    mute.addEventListener("click", () => {
+        mutar();
+    });
 }
 
 function htmlQuiz() {
@@ -149,9 +180,13 @@ function htmlQuiz() {
     content.innerHTML += `
         <div class="proxima">
             <button type="button" id="next">Proxima questão</button>
-        </div>
+            </div>
             <button type="button" id="start">Reiniciar Quiz</button>
-    `
+            <button type="button" id="mode">mode</button>
+            <button type="button" id="mute">Mute</button>
+            `
+            
+            
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
     contadorQuestao++;
@@ -160,16 +195,25 @@ function htmlQuiz() {
         conclusao();
     } else {
         if (selectedAnswer?.value !== undefined) {
-            jsQuiz();
+            htmlQuiz();
         } else {
             alert("Por favor, selecione uma opção.");
         }
     }
 });
-    reiniciar();
+    const mode = document.querySelector("#mode");
+    mode.addEventListener("click", () => {
+        changeMode();
+    });   
+reiniciar();
+const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
 }
 
 function cssQuiz() {
+    
     const content = document.querySelector("#principal");
     const sub = document.querySelector("#sub")
     sub.innerText = `Teste seu conhecimento de Css!`
@@ -180,6 +224,7 @@ function cssQuiz() {
             </div>
         </div>
     `
+    
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
             <div class="resposta">
@@ -191,11 +236,14 @@ function cssQuiz() {
         `
     };
     content.innerHTML += `
-        <div class="proxima">
-            <button type="button" id="next">Proxima questão</button>
-        </div>
-            <button type="button" id="start">Reiniciar Quiz</button>
+    <div class="proxima">
+    <button type="button" id="next">Proxima questão</button>
+    </div>
+    <button type="button" id="start">Reiniciar Quiz</button>
+    <button type="button" id="mode">mode</button>
+    <button type="button" id="mute">Mute</button>
     `
+
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
     contadorQuestao++;
@@ -204,13 +252,22 @@ function cssQuiz() {
         conclusao();
     } else {
         if (selectedAnswer?.value !== undefined) {
-            jsQuiz();
+            cssQuiz();
         } else {
             alert("Por favor, selecione uma opção.");
         }
     }
 });
-    reiniciar();
+
+const mode = document.querySelector("#mode");
+mode.addEventListener("click", () => {
+    changeMode();
+});
+reiniciar();
+const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
 }
 
 function conclusao() {
@@ -276,18 +333,63 @@ function conclusao() {
             </table>
         </div>
         <button type="button" id="start">Reiniciar Quiz</button>
-    `
-    const tit = document.querySelector("#titulo")
-    const sub = document.querySelector("#sub")
-    tit.innerText = `Quiz SoulCode`
-    sub.innerText = `Teste seu conhecimento de Css!`
-
-    reiniciar()
+        <button type="button" id="mode">mode</button>
+        <button type="button" id="mute">Mute</button>
+        `
+        
+        const tit = document.querySelector("#titulo")
+        const sub = document.querySelector("#sub")
+        tit.innerText = `Quiz SoulCode`
+        sub.innerText = ``
+        
+        const mode = document.querySelector("#mode");
+        mode.addEventListener("click", () => {
+            changeMode();
+        });
+        const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
+        reiniciar();
+        
 }
 
 function reiniciar() {
     const reiniciar = document.querySelector("#start");
     start.addEventListener("click", () => {
         inicio()
+        const audio = document.querySelector("audio")
+        audio.pause()
     });
+}
+
+function changeMode() {   
+    idMode++;
+    const body = document.querySelector("body");
+        if((idMode % 2) == 0){
+            body.style.backgroundColor = "#27292b";
+        }else{
+            body.style.backgroundColor = '#FFFFFF';
+        }
+}
+
+function musica() {
+    const inicio = document.querySelector("body")
+            inicio.innerHTML+=`<audio>`
+            const audio = document.querySelector("audio");
+            audio.src = "../thinking-time-148496.mp3";
+            audio.play();
+}
+
+function mutar() {        
+        const audio = document.querySelector("audio");
+        if((idSom % 2) === 0 ){
+            audio.pause();
+            idSom++;    
+        }else{
+            audio.play();
+            idSom++;    
+        }
+        
+    
 }
