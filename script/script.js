@@ -4,6 +4,7 @@ import { quizJS } from "./jsQuestion.js";
 
 let idMode = 1;
 let contadorQuestao = 0;
+let idSom = 0;
 let timerInterval; // Variável para armazenar o intervalo do cronômetro
 function startTimer(duration, display) {
     let timer = duration, hours, minutes, seconds;
@@ -54,14 +55,17 @@ function inicio() {
         if (nome === "") {
         alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
+            idSom = 0;
             musica();
-        cssQuiz();
+            cssQuiz();
         } else if (escolha.value == "html") {
+            idSom = 0;
             musica();
             htmlQuiz();
         } else {
+            idSom = 0;
             musica();
-        jsQuiz();
+            jsQuiz();
         }
       // Iniciando o cronômetro ao iniciar o quiz (aqui defini 30 minutos)
         const duration = 60 * 30; // 30 minutos em segundos
@@ -77,10 +81,13 @@ function inicio() {
         } else if (escolha.value == "css") {
             musica();
             cssQuiz();
+            idSom = 0;
         } else if (escolha.value == "html") {
+            idSom = 0;
             musica();
             htmlQuiz();
         } else {
+            idSom = 0;
             musica();
             jsQuiz();
         }
@@ -101,12 +108,11 @@ function jsQuiz() {
     sub.innerText = `Teste seu conhecimento de JavaScript!`
     content.innerHTML = `
         <div id="questao">
-        <div class="resposta">
-        <h3>${quizJS[contadorQuestao].pergunta}</h3>
+            <div class="resposta">
+                <h3>${quizJS[contadorQuestao].pergunta}</h3>
             </div>
         </div>
     `
-
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
             <div class="resposta">
@@ -122,7 +128,8 @@ function jsQuiz() {
             <button type="button" id="next">Proxima questão</button>
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
-            <button type="button" id="mode">mode</button>
+            <button type="button" id="mode">Mode</button>
+            <button type="button" id="mute">Mute</button>
     `
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
@@ -143,6 +150,10 @@ const mode = document.querySelector("#mode");
             changeMode();
         });
     reiniciar();
+const mute = document.querySelector("#mute");
+    mute.addEventListener("click", () => {
+        mutar();
+    });
 }
 
 function htmlQuiz() {
@@ -172,8 +183,10 @@ function htmlQuiz() {
             </div>
             <button type="button" id="start">Reiniciar Quiz</button>
             <button type="button" id="mode">mode</button>
-    `
-    
+            <button type="button" id="mute">Mute</button>
+            `
+            
+            
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
     contadorQuestao++;
@@ -193,6 +206,10 @@ function htmlQuiz() {
         changeMode();
     });   
 reiniciar();
+const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
 }
 
 function cssQuiz() {
@@ -224,6 +241,7 @@ function cssQuiz() {
     </div>
     <button type="button" id="start">Reiniciar Quiz</button>
     <button type="button" id="mode">mode</button>
+    <button type="button" id="mute">Mute</button>
     `
 
     const next = document.querySelector("#next");
@@ -245,9 +263,11 @@ const mode = document.querySelector("#mode");
 mode.addEventListener("click", () => {
     changeMode();
 });
-
 reiniciar();
-
+const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
 }
 
 function conclusao() {
@@ -314,6 +334,7 @@ function conclusao() {
         </div>
         <button type="button" id="start">Reiniciar Quiz</button>
         <button type="button" id="mode">mode</button>
+        <button type="button" id="mute">Mute</button>
         `
         
         const tit = document.querySelector("#titulo")
@@ -325,13 +346,20 @@ function conclusao() {
         mode.addEventListener("click", () => {
             changeMode();
         });
-    reiniciar()
+        const mute = document.querySelector("#mute");
+        mute.addEventListener("click", () => {
+            mutar();
+        });
+        reiniciar();
+        
 }
 
 function reiniciar() {
     const reiniciar = document.querySelector("#start");
     start.addEventListener("click", () => {
         inicio()
+        const audio = document.querySelector("audio")
+        audio.pause()
     });
 }
 
@@ -350,5 +378,18 @@ function musica() {
             inicio.innerHTML+=`<audio>`
             const audio = document.querySelector("audio");
             audio.src = "../thinking-time-148496.mp3";
-            audio.play(true);
+            audio.play();
+}
+
+function mutar() {        
+        const audio = document.querySelector("audio");
+        if((idSom % 2) === 0 ){
+            audio.pause();
+            idSom++;    
+        }else{
+            audio.play();
+            idSom++;    
+        }
+        
+    
 }
