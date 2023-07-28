@@ -11,7 +11,7 @@ body{
     align-items: center;
     display: flex;
     justify-content: center;
-     background: linear-gradient(#5d8aa8, white)
+    /* background: linear-gradient(#5d8aa8, white) */
 }
 /* width: 100%;
 min-height: 100vh;
