@@ -144,6 +144,7 @@ function jsQuiz() {
             alert("Por favor, selecione uma opção.");
         }
     }
+    
 });
 const mode = document.querySelector("#mode");
         mode.addEventListener("click", () => {
