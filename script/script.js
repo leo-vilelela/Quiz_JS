@@ -2,9 +2,25 @@ import { quizCSS } from "./cssQuestion.js";
 import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
 
-
-let contadorQuestao = 0;
 let idMode = 1;
+let contadorQuestao = 0;
+let timerInterval; // Variável para armazenar o intervalo do cronômetro
+function startTimer(duration, display) {
+    let timer = duration, hours, minutes, seconds;
+    timerInterval = setInterval(function () {
+    hours = parseInt(timer / 3600, 10);
+    minutes = parseInt((timer % 3600) / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    display.textContent = hours + ":" + minutes + ":" + seconds;
+    if (--timer < 0) {
+        clearInterval(timerInterval);
+}
+    }, 1000);
+}
+
 function inicio() {
     contadorQuestao = 0;
     const content = document.querySelector("#principal");
@@ -26,16 +42,36 @@ function inicio() {
         <button type="button" id="mode">mode</button>
     `;
 
+    const btn = document.querySelector("#btn");
+    
     const mode = document.querySelector("#mode");
     mode.addEventListener("click", () => {
         changeMode();
     });
-    
-    const btn = document.querySelector("#btn");
     btn.addEventListener("click", () => {
         const escolha = document.querySelector("#tema");
         const nome = document.querySelector("#nome").value;
-
+        if (nome === "") {
+        alert("Por favor, insira seu nome antes de continuar.");
+        } else if (escolha.value == "css") {
+            musica();
+        cssQuiz();
+        } else if (escolha.value == "html") {
+            musica();
+            htmlQuiz();
+        } else {
+            musica();
+        jsQuiz();
+        }
+      // Iniciando o cronômetro ao iniciar o quiz (aqui defini 30 minutos)
+        const duration = 60 * 30; // 30 minutos em segundos
+        const display = document.querySelector("#timer");
+        startTimer(duration, display);
+    });
+    btn.addEventListener("click", () => {
+        const escolha = document.querySelector("#tema");
+        const nome = document.querySelector("#nome").value;
+    
         if (nome === "") {
             alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
@@ -48,13 +84,16 @@ function inicio() {
             musica();
             jsQuiz();
         }
+    
+        // Iniciando o cronômetro ao iniciar o quiz (aqui definimos 30 minutos)
+        const duration = 60 * 30; // 30 minutos em segundos
+        const display = document.querySelector("#timer");
+        startTimer(duration, display);
     });
-
     
 }
 
 inicio();
-
 
 function jsQuiz() {
     const content = document.querySelector("#principal");
@@ -106,8 +145,6 @@ const mode = document.querySelector("#mode");
     reiniciar();
 }
 
-
-
 function htmlQuiz() {
     const content = document.querySelector("#principal");
     const sub = document.querySelector("#sub")
@@ -157,7 +194,6 @@ function htmlQuiz() {
     });   
 reiniciar();
 }
-
 
 function cssQuiz() {
     
