@@ -86,6 +86,7 @@ function jsQuiz() {
             alert("Por favor, selecione uma opção.");
         }
     }
+    
 });
     reiniciar();
 }
