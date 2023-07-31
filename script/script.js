@@ -5,6 +5,9 @@ import { quizJS } from "./jsQuestion.js";
 let idMode = 1;
 let contadorQuestao = 0;
 let idSom = 0;
+let nome;
+let data = Date();
+let acertos = 0;
 let timerInterval; // Variável para armazenar o intervalo do cronômetro
 function startTimer(duration, display) {
     let timer = duration, hours, minutes, seconds;
@@ -22,6 +25,7 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
+// Formulário inicial
 function inicio() {
     contadorQuestao = 0;
     const content = document.querySelector("#principal");
@@ -44,14 +48,13 @@ function inicio() {
     `;
 
     const btn = document.querySelector("#btn");
-    
     const mode = document.querySelector("#mode");
     mode.addEventListener("click", () => {
         changeMode();
     });
     btn.addEventListener("click", () => {
         const escolha = document.querySelector("#tema");
-        const nome = document.querySelector("#nome").value;
+        nome = document.querySelector("#nome").value;
         if (nome === "") {
         alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
@@ -72,36 +75,12 @@ function inicio() {
         const display = document.querySelector("#timer");
         startTimer(duration, display);
     });
-    btn.addEventListener("click", () => {
-        const escolha = document.querySelector("#tema");
-        const nome = document.querySelector("#nome").value;
-    
-        if (nome === "") {
-            alert("Por favor, insira seu nome antes de continuar.");
-        } else if (escolha.value == "css") {
-            musica();
-            cssQuiz();
-            idSom = 0;
-        } else if (escolha.value == "html") {
-            idSom = 0;
-            musica();
-            htmlQuiz();
-        } else {
-            idSom = 0;
-            musica();
-            jsQuiz();
-        }
-    
-        // Iniciando o cronômetro ao iniciar o quiz (aqui definimos 30 minutos)
-        const duration = 60 * 30; // 30 minutos em segundos
-        const display = document.querySelector("#timer");
-        startTimer(duration, display);
-    });
-    
 }
+
 
 inicio();
 
+// Função que inicia o Quiz Java Script
 function jsQuiz() {
     const content = document.querySelector("#principal");
     const sub = document.querySelector("#sub")
@@ -135,6 +114,9 @@ function jsQuiz() {
     next.addEventListener("click", () => {
     contadorQuestao++;
     const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    
+    contarAcertos(selectedAnswer.value, quizJS);
+    
     if (contadorQuestao === 10) {
         conclusao();
     } else {
@@ -157,6 +139,7 @@ const mute = document.querySelector("#mute");
     });
 }
 
+// Função que inicia o Quiz HTML
 function htmlQuiz() {
     const content = document.querySelector("#principal");
     const sub = document.querySelector("#sub")
@@ -192,6 +175,9 @@ function htmlQuiz() {
     next.addEventListener("click", () => {
     contadorQuestao++;
     const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    
+    contarAcertos(selectedAnswer.value, quizHTML);
+    
     if (contadorQuestao === 10) {
         conclusao();
     } else {
@@ -213,8 +199,8 @@ const mute = document.querySelector("#mute");
         });
 }
 
+// Função que inicia o Quiz CSS
 function cssQuiz() {
-    
     const content = document.querySelector("#principal");
     const sub = document.querySelector("#sub")
     sub.innerText = `Teste seu conhecimento de Css!`
@@ -249,6 +235,9 @@ function cssQuiz() {
     next.addEventListener("click", () => {
     contadorQuestao++;
     const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+    
+    contarAcertos(selectedAnswer.value, quizCSS);
+    
     if (contadorQuestao === 10) {
         conclusao();
     } else {
@@ -271,6 +260,7 @@ const mute = document.querySelector("#mute");
         });
 }
 
+// Função que monta a tela de resultados e insights
 function conclusao() {
     let ct = document.querySelector("#principal")
     ct.innerHTML = `
@@ -287,6 +277,12 @@ function conclusao() {
                 </tr>
             </thead>
             <tbody id="quiz-results">
+            <tr>
+                    <th>${nome}</th>
+                    <th>tempo</th>
+                    <th>${data.slice(4,21)}</th>
+                    <th>${acertos}/10</th>
+                </tr>
             </tbody>
         </table>
 
@@ -352,9 +348,21 @@ function conclusao() {
             mutar();
         });
         reiniciar();
-        
+        acertos = 0;
 }
 
+// Função que calcula os acertos
+function contarAcertos(answer, subject) {
+    if (answer == subject[contadorQuestao-1].resposta){
+        acertos++;
+        alert(`Parabéns, você acertou ${acertos}/10 continue assim! `)
+    }else{
+        alert(`O erro é parte do aprendizado, vá em frente!`)
+    }
+}
+
+
+// Função que reinicia o quiz
 function reiniciar() {
     const reiniciar = document.querySelector("#start");
     start.addEventListener("click", () => {
@@ -364,6 +372,7 @@ function reiniciar() {
     });
 }
 
+// Função para alterar entre os temas Dark e Light
 function changeMode() {   
     idMode++;
     const body = document.querySelector("body");
@@ -374,6 +383,7 @@ function changeMode() {
         }
 }
 
+//  Função que inicia a execução da trilha de audio
 function musica() {
     const inicio = document.querySelector("body")
             inicio.innerHTML+=`<audio>`
@@ -382,6 +392,7 @@ function musica() {
             audio.play();
 }
 
+//  Função que controla a execução da trilha de audio
 function mutar() {        
         const audio = document.querySelector("audio");
         if((idSom % 2) === 0 ){
