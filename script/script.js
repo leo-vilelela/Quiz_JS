@@ -5,6 +5,9 @@ import { quizJS } from "./jsQuestion.js";
 let idMode = 1;
 let contadorQuestao = 0;
 let idSom = 0;
+let nome;
+let data = Date();
+let acertos = 0;
 let timerInterval; // Variável para armazenar o intervalo do cronômetro
 function startTimer(duration, display) {
     let timer = duration, hours, minutes, seconds;
@@ -44,7 +47,6 @@ function inicio() {
     `;
 
     const btn = document.querySelector("#btn");
-    
     const mode = document.querySelector("#mode");
     mode.addEventListener("click", () => {
         changeMode();
