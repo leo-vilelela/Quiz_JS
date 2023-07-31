@@ -280,7 +280,7 @@ function conclusao() {
             <tr>
                     <th>${nome}</th>
                     <th>tempo</th>
-                    <th>${data.slice(8,21)}</th>
+                    <th>${data.slice(4,21)}</th>
                     <th>${acertos}/10</th>
                 </tr>
             </tbody>
