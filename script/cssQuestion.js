@@ -30,7 +30,9 @@ export const quizCSS = [
         resposta: 0
     },
     {
-        pergunta: "O CSS pode ser incorporado a um documento HTML de várias maneiras. Qual das seguintes opções é a forma correta de usar CSS internamente?",
+        pergunta: "O CSS pode ser incorporado a um documento HTML de várias maneiras. <br>Qual das seguintes opções é a forma correta de usar CSS internamente?",
+        
+
         alternativas: [
             "&ltcss&gt...&lt/css&gt",
             "&ltstyle&gt...&lt/style&gt",
@@ -80,7 +82,7 @@ export const quizCSS = [
         resposta: 0
     },
     {
-        pergunta: "Qual é a propriedade do CSS usada para definir a ordem em que os elementos são empilhados, sobrepondo-se uns aos outros?",
+        pergunta: "Qual é a propriedade do CSS usada para definir a ordem <br>em que os elementos são empilhados, sobrepondo-se uns aos outros?",
         alternativas: [
             "stack",
             "layer",

@@ -8,22 +8,26 @@ let idSom = 0;
 let nome;
 let data = Date();
 let acertos = 0;
-let timerInterval; // Variável para armazenar o intervalo do cronômetro
-function startTimer(duration, display) {
-    let timer = duration, hours, minutes, seconds;
+let timerInterval; 
+function startTimer(_duration, display) {
+    let timer = 0; 
+    let hours, minutes, seconds;
     timerInterval = setInterval(function () {
-    hours = parseInt(timer / 3600, 10);
-    minutes = parseInt((timer % 3600) / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    display.textContent = hours + ":" + minutes + ":" + seconds;
-    if (--timer < 0) {
-        clearInterval(timerInterval);
-}
-    }, 1000);
-}
+      timer++; 
+      hours = parseInt(timer / 3600, 10);
+      minutes = parseInt((timer % 3600) / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.
+     
+  textContent = hours + ":" + minutes + ":" + seconds;
+    }, 1000); 
+
+} 
+
+
 
 // Formulário inicial
 function inicio() {
@@ -31,7 +35,14 @@ function inicio() {
     const content = document.querySelector("#principal");
     content.innerHTML = " ";
     const sub = document.querySelector("#sub");
-    sub.innerText = `Insira seu nome e selecione um tema`;
+    sub.innerText= `Instruções:
+                    -Coloque seu nome
+                    -Selecione uma das opções de quiz
+                    (HTML, CSS. JAVASCRIPT)
+                    -Você terá 5 minutos para 
+                    responder 10 questões.
+                    -Ao final terá os resultados`
+;
     content.innerHTML = `
         <form>
             <label for="nome"> Nome</label>
@@ -42,9 +53,14 @@ function inicio() {
             <option value="css">CSS</option>
             <option value="js">JavaScript</option>
             </select>
-            <button type="button" id="btn">Iniciar Quiz</button>
+            <button type="button" id="btn">Iniciar<br>Quiz</button>
         </form>
-        <button type="button" id="mode">mode</button>
+        <button type="button" id="mode"><span class="material-symbols-outlined">
+        brightness_medium
+        </span></button>
+        <button type="button" id="mute"><span class="material-symbols-outlined">
+            play_circle
+            </span></button>
     `;
 
     const btn = document.querySelector("#btn");
@@ -70,10 +86,10 @@ function inicio() {
             musica();
             jsQuiz();
         }
-      // Iniciando o cronômetro ao iniciar o quiz (aqui defini 30 minutos)
-        const duration = 60 * 30; // 30 minutos em segundos
-        const display = document.querySelector("#timer");
-        startTimer(duration, display);
+      // Iniciando o cronômetro ao iniciar o quiz (aqui defini 5 minutos)
+const duration = 5 * 60; // 5 minutos em segundos
+const display = document.querySelector("#timer");
+startTimer(duration, display);
     });
 }
 
@@ -107,8 +123,12 @@ function jsQuiz() {
             <button type="button" id="next">Proxima questão</button>
         </div>
             <button type="button" id="start">Reiniciar Quiz</button>
-            <button type="button" id="mode">Mode</button>
-            <button type="button" id="mute">Mute</button>
+            <button type="button" id="mode"><span class="material-symbols-outlined">
+            brightness_medium
+            </span></button>
+            <button type="button" id="mute"><span class="material-symbols-outlined">
+            play_circle
+            </span></button>
     `
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
@@ -166,8 +186,12 @@ function htmlQuiz() {
             <button type="button" id="next">Proxima questão</button>
             </div>
             <button type="button" id="start">Reiniciar Quiz</button>
-            <button type="button" id="mode">mode</button>
-            <button type="button" id="mute">Mute</button>
+            <button type="button" id="mode"><span class="material-symbols-outlined">
+            brightness_medium
+            </span></button>
+            <button type="button" id="mute"><span class="material-symbols-outlined">
+            play_circle
+            </span></button>
             `
             
             
@@ -227,8 +251,12 @@ function cssQuiz() {
     <button type="button" id="next">Proxima questão</button>
     </div>
     <button type="button" id="start">Reiniciar Quiz</button>
-    <button type="button" id="mode">mode</button>
-    <button type="button" id="mute">Mute</button>
+    <button type="button" id="mode"><span class="material-symbols-outlined">
+    brightness_medium
+    </span></button>
+    <button type="button" id="mute"><span class="material-symbols-outlined">
+    play_circle
+    </span></button>
     `
 
     const next = document.querySelector("#next");
@@ -330,8 +358,12 @@ function conclusao() {
             </table>
         </div>
         <button type="button" id="start">Reiniciar Quiz</button>
-        <button type="button" id="mode">mode</button>
-        <button type="button" id="mute">Mute</button>
+        <button type="button" id="mode"><span class="material-symbols-outlined">
+        brightness_medium
+        </span></button>
+        <button type="button" id="mute"><span class="material-symbols-outlined">
+            play_circle
+            </span></button>
         `
         
         const tit = document.querySelector("#titulo")
