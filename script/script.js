@@ -6,6 +6,7 @@ let idMode = 1;
 let contadorQuestao = 0;
 let idSom = 0;
 let nome;
+let escolha;
 let data = Date();
 let acertos = 0;
 let timerInterval; // Variável para armazenar o intervalo do cronômetro
@@ -53,7 +54,7 @@ function inicio() {
         changeMode();
     });
     btn.addEventListener("click", () => {
-        const escolha = document.querySelector("#tema");
+        escolha = document.querySelector("#tema");
         nome = document.querySelector("#nome").value;
         if (nome === "") {
         alert("Por favor, insira seu nome antes de continuar.");
@@ -272,6 +273,7 @@ function conclusao() {
                 <tr>
                     <th>Nome</th>
                     <th>Tempo</th>
+                    <th>Tema</th>
                     <th>Data Quiz</th>
                     <th>Pontuação</th>
                 </tr>
@@ -280,6 +282,7 @@ function conclusao() {
             <tr>
                     <th>${nome}</th>
                     <th>tempo</th>
+                    <th>${escolha.value}</th>
                     <th>${data.slice(4,21)}</th>
                     <th>${acertos}/10</th>
                 </tr>
@@ -401,7 +404,6 @@ function mutar() {
         }else{
             audio.play();
             idSom++;    
-        }
-        
-    
+        }   
 }
+
