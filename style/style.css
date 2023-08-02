@@ -1,172 +1,172 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,300&display=swap');
-body {
-    font-family: 'Roboto Mono';
-    background-color: #f2f2f2;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-#formulario{
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
-  }
 
-  #nome {
-    border-radius: 20px;
-    margin: 10px;
-    width: 100%;
-    padding: 7px;  
+body {
+  font-family: 'Roboto Mono';
+  background-color: #f2f2f2;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-  #tema {
-    border-radius: 20px;
-    width: 100%;
-    padding: 7px
-  }
-  
-  .resposta {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    cursor: pointer;
-  }
-  
-  input[type='radio'] {
-    margin-right: 10px;
-  }
-  
-  button {
-    background-color: #007bff;
-    font-family: 'Roboto Mono';
-    color: #ffffff;
-    border: none;
-    margin: 30px auto; 
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.2s ease;
-  }
-  
- button:hover {
-    background-color: #0056b3;
-  }
+main {
+  background-color: #c9c9c9;
+  border-radius: 30px;
+  padding: 5vh;
+  margin: 5px;
+  position: relative;
+}
 
-  #timer {
-    color: #007bff;
-      position: fixed;
-      top: 0;
-      left: 40vh;
-      right: 0;
-      text-align: center;
-      padding: 20Vh;
+#formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
 
-  }
+h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
 
-  #mode, #mute {
-    font-family: 'Roboto Mono';
-    background-color: #333;
-    display: flex;
-    float: right;
-    margin-right: 5px;
-  }
+#nome {
+  border-radius: 20px;
+  margin: 10px;
+  width: 100%;
+  padding: 7px;
+}
+
+#tema {
+  border-radius: 20px;
+  width: 100%;
+  padding: 7px;
+}
+
+.resposta {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  cursor: pointer;
+}
+
+
+button {
+  background-color: #007bff;
+  font-family: 'Roboto Mono';
+  color: #ffffff;
+  border: none;
+  margin: 30px auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#timer {
+  color: #007bff;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 1vh;
+  margin: 1vh;
+  background-color: white;
+  border-radius: 30px;
+  padding: 1px;
   
+}
+
+#mode, #mute {
+  font-family: 'Roboto Mono';
+  background-color: #333;
+  display: flex;
+  float: right;
+  margin-right: 5px;
+}
+
+#mode:hover, #mute:hover {
+  background-color: gray;
+}
+
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    #sub {
-      text-align: justify;
-      padding: 20px;
-      margin: 20px;
-      background-color: #f2f2f2;
-  }
-  
-  .proxima {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-  }
-  
-  thead {
-    background-color: #007bff;
-    color: #ffffff;
-  }
-  
-  th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  caption {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .rank-tables {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .rank-tables table {
-    width: 30%;
-  }
-  
-  #titulo {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #007bff;
-  }
-  
-  #media-acertos, #media-erros {
-    font-weight: bold;
-  }
-  
-  #quiz-results tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  #quiz-results td {
-    text-align: center;
-  }
-  
-  #html-rank tr:nth-child(even), #css-rank tr:nth-child(even), #js-rank tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  #html-rank td, #css-rank td, #js-rank td {
-    text-align: center;
-  }
+#sub {
+  text-align: justify;
+}
+
+
+.proxima {
+  text-align: center;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rank-tables {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.rank-tables table {
+  width: 30%;
+}
+
+#titulo {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+#media-acertos, #media-erros {
+  font-weight: bold;
+}
+
+#quiz-results tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#quiz-results td {
+  text-align: center;
+}
 
 
   
