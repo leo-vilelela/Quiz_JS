@@ -11,6 +11,8 @@ let data = Date();
 let acertos = 0;
 let timerInterval; 
 let tempoDecorrido = 0;
+let tempoTotalQuiz = 0;
+
 
 function pausarCronometro() {
     clearInterval(timerInterval);
@@ -24,11 +26,10 @@ function IniciarCronometro() {
 }
 
 function startTimer(_duration, display) {
-    let timer = 0; 
+    let timer = 0;
     let hours, minutes, seconds;
     timerInterval = setInterval(function () {
-        timer++; 
-        tempoDecorrido = timer; // Atualiza o tempo decorrido a cada segundo
+        timer++;
         hours = parseInt(timer / 3600, 10);
         minutes = parseInt((timer % 3600) / 60, 10);
         seconds = parseInt(timer % 60, 10);
@@ -36,8 +37,12 @@ function startTimer(_duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
         display.textContent = hours + ":" + minutes + ":" + seconds;
-    }, 1000); 
+
+        // Atualize o tempo total do quiz
+        tempoTotalQuiz = timer;
+    }, 1000);
 }
+
 
 function formatarTempo(tempoSegundos) {
     const hours = parseInt(tempoSegundos / 3600, 10);
@@ -343,13 +348,13 @@ function conclusao() {
             </thead>
             <tbody id="quiz-results">
             <tr>
-                    <th>${nome}</th>
-                    <th>tempo</th>
-                    <th>${escolha.value}</th>
-                    <th>${data.slice(4,21)}</th>
-                    <th>${acertos}/10</th>
-                </tr>
-            </tbody>
+                <th>${nome}</th>
+                <th>${formatTempo(tempoTotalQuiz)}</th> <!-- Use a função formatTempo para exibir o tempo formatado -->
+                <th>${escolha.value}</th>
+                <th>${data.slice(4, 21)}</th>
+                <th>${acertos}/10</th>
+            </tr>
+        </tbody>
         </table>
 
         <p>Média de acertos: <span id="media-acertos">--</span></p>
@@ -403,6 +408,16 @@ function conclusao() {
             play_circle
             </span></button>
         `
+        // Função que formata o tempo em horas, minutos e segundos
+function formatTempo(tempoSegundos) {
+    let hours = parseInt(tempoSegundos / 3600, 10);
+    let minutes = parseInt((tempoSegundos % 3600) / 60, 10);
+    let seconds = parseInt(tempoSegundos % 60, 10);
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    return hours + ":" + minutes + ":" + seconds;
+}
         
         const tit = document.querySelector("#titulo")
         const sub = document.querySelector("#sub")
