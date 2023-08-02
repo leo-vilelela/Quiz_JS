@@ -12,6 +12,8 @@ let acertos = 0;
 let timerInterval; 
 let tempoDecorrido = 0;
 let tempoTotalQuiz = 0;
+let erros = 0;
+let totalPerguntas = 10;
 
 
 function pausarCronometro() {
@@ -118,11 +120,11 @@ function inicio() {
             musica();
             jsQuiz();
         }
-      // Iniciando o cronômetro ao iniciar o quiz (aqui defini 5 minutos)
-const duration = 5 * 60; // 5 minutos em segundos
-const display = document.querySelector("#timer");
-startTimer(duration, display);
-    });
+        // Iniciando o cronômetro ao iniciar o quiz (aqui defini 5 minutos)
+        const duration = 5 * 60; // 5 minutos em segundos
+        const display = document.querySelector("#timer");
+        startTimer(duration, display);
+        });
 }
 
 
@@ -326,6 +328,12 @@ const mute = document.querySelector("#mute");
         reiniciar();
 }
 
+if (contadorQuestao === 10) {
+    armazenarTempo();
+    conclusao();
+}
+
+
 // Função que monta a tela de resultados e insights
 function conclusao() {
     let ct = document.querySelector("#principal")
@@ -405,8 +413,18 @@ function conclusao() {
             play_circle
             </span></button>
         `
-        // Função que formata o tempo em horas, minutos e segundos
-function formatTempo(tempoSegundos) {
+
+    const mediaAcertos = acertos / totalPerguntas;
+    const mediaErros = erros / totalPerguntas;
+
+    const mediaAcertosElement = document.querySelector("#media-acertos");
+    const mediaErrosElement = document.querySelector("#media-erros");
+
+    mediaAcertosElement.textContent = mediaAcertos.toFixed(2); // Exibe a média de acertos com duas casas decimais
+    mediaErrosElement.textContent = mediaErros.toFixed(2); // Exibe a média de erros com duas casas decimais
+
+    // Função que formata o tempo em horas, minutos e segundos
+    function formatTempo(tempoSegundos) {
     let hours = parseInt(tempoSegundos / 3600, 10);
     let minutes = parseInt((tempoSegundos % 3600) / 60, 10);
     let seconds = parseInt(tempoSegundos % 60, 10);
@@ -436,13 +454,15 @@ function formatTempo(tempoSegundos) {
 
 // Função que calcula os acertos
 function contarAcertos(answer, subject) {
-    if (answer == subject[contadorQuestao-1].resposta){
+    if (answer == subject[contadorQuestao - 1].resposta) {
         acertos++;
-        alert(`Parabéns, você acertou ${acertos}/10 continue assim! `)
-    }else{
-        alert(`O erro é parte do aprendizado, vá em frente!`)
+        alert(`Parabéns, você acertou ${acertos}/10!`);
+    } else {
+        erros++;
+        alert(`O erro é parte do aprendizado, vá em frente!`);
     }
 }
+
 
 
 // Função que reinicia o quiz
