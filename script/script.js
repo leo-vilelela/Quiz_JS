@@ -93,9 +93,6 @@ function inicio() {
         <button type="button" id="mode"><span class="material-symbols-outlined">
         brightness_medium
         </span></button>
-        <button type="button" id="mute"><span class="material-symbols-outlined">
-            play_circle
-            </span></button>
     `;
 
     const btn = document.querySelector("#btn");
