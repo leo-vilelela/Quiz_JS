@@ -10,25 +10,54 @@ let escolha;
 let data = Date();
 let acertos = 0;
 let timerInterval; 
+let tempoDecorrido = 0;
+
+function pausarCronometro() {
+    clearInterval(timerInterval);
+}
+
+function IniciarCronometro() {
+    resetTimer(); // Chama a função para zerar o cronômetro
+    const duration = 5 * 60; // 5 minutos em segundos
+    const display = document.querySelector("#timer");
+    startTimer(duration, display); // Inicia o cronômetro novamente com a nova duração
+}
+
 function startTimer(_duration, display) {
     let timer = 0; 
     let hours, minutes, seconds;
     timerInterval = setInterval(function () {
-      timer++; 
-      hours = parseInt(timer / 3600, 10);
-      minutes = parseInt((timer % 3600) / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-      hours = hours < 10 ? "0" + hours : hours;
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-      display.
-     
-  textContent = hours + ":" + minutes + ":" + seconds;
+        timer++; 
+        tempoDecorrido = timer; // Atualiza o tempo decorrido a cada segundo
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = hours + ":" + minutes + ":" + seconds;
     }, 1000); 
+}
 
-} 
+function formatarTempo(tempoSegundos) {
+    const hours = parseInt(tempoSegundos / 3600, 10);
+    const minutes = parseInt((tempoSegundos % 3600) / 60, 10);
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+}
 
-
+function armazenarTempo() {
+    const quizResults = document.querySelector("#quiz-results");
+    const tempoFormatado = formatarTempo(tempoDecorrido);
+    quizResults.innerHTML += `
+        <tr>
+            <td>${nome}</td>
+            <td>${tempoFormatado}</td>
+            <td>${escolha.value}</td>
+            <td>${data.slice(4, 21)}</td>
+            <td>${acertos}/10</td>
+        </tr>
+    `;
+}
 
 // Formulário inicial
 function inicio() {
@@ -158,6 +187,8 @@ const mute = document.querySelector("#mute");
     mute.addEventListener("click", () => {
         mutar();
     });
+
+    reiniciar();
 }
 
 // Função que inicia o Quiz HTML
@@ -222,6 +253,8 @@ const mute = document.querySelector("#mute");
         mute.addEventListener("click", () => {
             mutar();
         });
+
+        reiniciar();
 }
 
 // Função que inicia o Quiz CSS
@@ -287,6 +320,8 @@ const mute = document.querySelector("#mute");
         mute.addEventListener("click", () => {
             mutar();
         });
+
+        reiniciar();
 }
 
 // Função que monta a tela de resultados e insights
@@ -384,6 +419,7 @@ function conclusao() {
         });
         reiniciar();
         acertos = 0;
+        pausarCronometro();
 }
 
 // Função que calcula os acertos
@@ -399,13 +435,15 @@ function contarAcertos(answer, subject) {
 
 // Função que reinicia o quiz
 function reiniciar() {
-    const reiniciar = document.querySelector("#start");
-    start.addEventListener("click", () => {
-        inicio()
-        const audio = document.querySelector("audio")
-        audio.pause()
+    const reiniciarBtn = document.querySelector("#start");
+    reiniciarBtn.addEventListener("click", () => {
+      inicio();
+      const audio = document.querySelector("audio");
+      audio.pause();
+      pausarCronometro(); // Pausa o cronômetro
+      IniciarCronometro(); // Chama a função para reiniciar o cronômetro
     });
-}
+  }
 
 // Função para alterar entre os temas Dark e Light
 function changeMode() {   
