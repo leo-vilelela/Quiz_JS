@@ -1,6 +1,7 @@
 import { quizCSS } from "./cssQuestion.js";
 import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
+import { participantes } from "./nomes.js";
 
 let idMode = 1;
 let contadorQuestao = 0;
@@ -336,6 +337,9 @@ if (contadorQuestao === 10) {
 
 // Função que monta a tela de resultados e insights
 function conclusao() {
+    
+    participantes.push({nome: nome, tempo:formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
+    participantes.sort((a, b) =>  b.pontuacao - a.pontuacao );
     let ct = document.querySelector("#principal")
     ct.innerHTML = `
         <h1>Resultados</h1> 
@@ -375,7 +379,20 @@ function conclusao() {
                         <th>Pontuação</th>
                     </tr>
                 </thead>
-                <tbody id="html-rank">
+                <tbody id="html-rank">`
+                let htmlRank = document.querySelector("#html-rank")
+                let posicaoHtml = 1;
+                for (let i = 0; i <= participantes.length - 1; i++){
+                    htmlRank.innerHTML+= ` 
+                    <tr>
+                        <th>${posicaoHtml}° Posição</th>
+                        <th>${participantes[i].nome}</th>
+                        <th>${participantes[i].pontuacao}/10</th>
+                    </tr>
+                `
+                posicaoHtml++;
+                }
+            ct.innerHTML +=  `
                 </tbody>
             </table>
 
@@ -388,7 +405,20 @@ function conclusao() {
                         <th>Pontuação</th>
                     </tr>
                 </thead>
-                <tbody id="css-rank">
+                <tbody id="css-rank">`
+                let cssRank = document.querySelector("#css-rank")
+                let posicaoCss = 1;
+                for (let i = 0; i <= participantes.length - 1; i++){
+                    cssRank.innerHTML+= ` 
+                    <tr>
+                        <th>${posicaoCss}° Posição</th>
+                        <th>${participantes[i].nome}</th>
+                        <th>${participantes[i].pontuacao}/10</th>
+                    </tr>
+                `
+                posicaoCss++;
+                }
+            ct.innerHTML +=  `
                 </tbody>
             </table>
 
@@ -401,7 +431,20 @@ function conclusao() {
                         <th>Pontuação</th>
                     </tr>
                 </thead>
-                <tbody id="js-rank">
+                <tbody id="js-rank">`
+                let jsRank = document.querySelector("#js-rank")
+                let posicaoJs = 1;
+                for (let i = 0; i <= participantes.length - 1; i++){
+                    jsRank.innerHTML+= ` 
+                    <tr>
+                        <th>${posicaoJs}° Posição</th>
+                        <th>${participantes[i].nome}</th>
+                        <th>${participantes[i].pontuacao}/10</th>
+                    </tr>
+                `
+                posicaoJs++;
+                }
+            ct.innerHTML +=  `
                 </tbody>
             </table>
         </div>
