@@ -1,7 +1,10 @@
 import { quizCSS } from "./cssQuestion.js";
 import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
-import { participantes } from "./nomes.js";
+import { participantesHtml } from "./nomesHTML.js";
+import { participantesCss } from "./nomesCSS.js";
+import { participantesJS } from "./nomesJS.js";
+
 
 let idMode = 1;
 let contadorQuestao = 0;
@@ -338,8 +341,8 @@ if (contadorQuestao === 10) {
 // Função que monta a tela de resultados e insights
 function conclusao() {
     
-    participantes.push({nome: nome, tempo:formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
-    participantes.sort((a, b) =>  b.pontuacao - a.pontuacao );
+    validaEscolha(escolha);
+    
     let ct = document.querySelector("#principal")
     ct.innerHTML = `
         <h1>Resultados</h1> 
@@ -369,7 +372,7 @@ function conclusao() {
         <p>Média de acertos: <span id="media-acertos">--</span></p>
         <p>Média de erros: <span id="media-erros">--</span></p>
 
-        
+        <div class="rank-tables">
             <table>
                 <caption>Tema HTML</caption>
                 <thead>
@@ -382,12 +385,12 @@ function conclusao() {
                 <tbody id="html-rank">`
                 let htmlRank = document.querySelector("#html-rank")
                 let posicaoHtml = 1;
-                for (let i = 0; i <= participantes.length - 1; i++){
+                for (let i = 0; i <= participantesHtml.length - 1; i++){
                     htmlRank.innerHTML+= ` 
                     <tr>
                         <th>${posicaoHtml}° Posição</th>
-                        <th>${participantes[i].nome}</th>
-                        <th>${participantes[i].pontuacao}/10</th>
+                        <th>${participantesHtml[i].nome}</th>
+                        <th>${participantesHtml[i].pontuacao}/10</th>
                     </tr>
                 `
                 posicaoHtml++;
@@ -408,12 +411,12 @@ function conclusao() {
                 <tbody id="css-rank">`
                 let cssRank = document.querySelector("#css-rank")
                 let posicaoCss = 1;
-                for (let i = 0; i <= participantes.length - 1; i++){
+                for (let i = 0; i <= participantesCss.length - 1; i++){
                     cssRank.innerHTML+= ` 
                     <tr>
                         <th>${posicaoCss}° Posição</th>
-                        <th>${participantes[i].nome}</th>
-                        <th>${participantes[i].pontuacao}/10</th>
+                        <th>${participantesCss[i].nome}</th>
+                        <th>${participantesCss[i].pontuacao}/10</th>
                     </tr>
                 `
                 posicaoCss++;
@@ -434,12 +437,12 @@ function conclusao() {
                 <tbody id="js-rank">`
                 let jsRank = document.querySelector("#js-rank")
                 let posicaoJs = 1;
-                for (let i = 0; i <= participantes.length - 1; i++){
+                for (let i = 0; i <= participantesJS.length - 1; i++){
                     jsRank.innerHTML+= ` 
                     <tr>
                         <th>${posicaoJs}° Posição</th>
-                        <th>${participantes[i].nome}</th>
-                        <th>${participantes[i].pontuacao}/10</th>
+                        <th>${participantesJS[i].nome}</th>
+                        <th>${participantesJS[i].pontuacao}/10</th>
                     </tr>
                 `
                 posicaoJs++;
@@ -468,14 +471,16 @@ function conclusao() {
 
     // Função que formata o tempo em horas, minutos e segundos
     function formatTempo(tempoSegundos) {
-    let hours = parseInt(tempoSegundos / 3600, 10);
-    let minutes = parseInt((tempoSegundos % 3600) / 60, 10);
-    let seconds = parseInt(tempoSegundos % 60, 10);
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    return hours + ":" + minutes + ":" + seconds;
-}
+        let hours = parseInt(tempoSegundos / 3600, 10);
+        let minutes = parseInt((tempoSegundos % 3600) / 60, 10);
+        let seconds = parseInt(tempoSegundos % 60, 10);
+
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        return hours + ":" + minutes + ":" + seconds;
+    }
         
         const tit = document.querySelector("#titulo")
         const sub = document.querySelector("#sub")
@@ -493,6 +498,25 @@ function conclusao() {
         reiniciar();
         acertos = 0;
         pausarCronometro();
+        
+        function organizaRank(){
+            participantesHtml.sort((a, b) =>  b.pontuacao - a.pontuacao );
+            participantesCss.sort((a, b) =>  b.pontuacao - a.pontuacao );
+            participantesJS.sort((a, b) =>  b.pontuacao - a.pontuacao );
+        }
+        
+        function validaEscolha(escolha){
+            if(escolha.value == "html"){
+                participantesHtml.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
+                organizaRank();
+            }else if(escolha.value == "css"){
+                participantesCss.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
+                organizaRank();
+            }else{
+                participantesJS.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
+                organizaRank();
+            }
+        }
 }
 
 // Função que calcula os acertos
@@ -551,4 +575,6 @@ function mutar() {
             idSom++;    
         }   
 }
+
+
 
