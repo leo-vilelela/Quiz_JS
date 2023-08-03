@@ -1,4 +1,4 @@
-export const participantes = [
+export const participantesCss = [
     {
         nome: "José",
         tempo: "00:10",
