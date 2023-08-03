@@ -119,7 +119,6 @@ form {
 table {
   width: 100%;
   margin-top: 20px;
-  border-collapse: collapse;
 }
 
 thead {
@@ -129,23 +128,14 @@ thead {
 
 th, td {
   padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
+  text-align: center;
+  
 }
 
 caption {
   font-weight: bold;
   margin-bottom: 10px;
-}
-
-.rank-tables {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.rank-tables table {
-  width: 30%;
+  color: #0056b3;
 }
 
 #titulo {
@@ -156,17 +146,7 @@ caption {
   color: #007bff;
 }
 
-#media-acertos, #media-erros {
-  font-weight: bold;
-}
 
-#quiz-results tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#quiz-results td {
-  text-align: center;
-}
 
 
   
