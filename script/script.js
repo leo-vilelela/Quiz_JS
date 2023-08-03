@@ -1,7 +1,7 @@
 import { quizCSS } from "./cssQuestion.js";
 import { quizHTML } from "./htmlQuestion.js";
 import { quizJS } from "./jsQuestion.js";
-import { participantesHtml } from "./nomesHTML.js";
+import { participantesHtml } from "./nomesHtml.js";
 import { participantesCss } from "./nomesCSS.js";
 import { participantesJS } from "./nomesJS.js";
 
@@ -385,6 +385,8 @@ function conclusao() {
                 <tbody id="html-rank">`
                 let htmlRank = document.querySelector("#html-rank")
                 let posicaoHtml = 1;
+                let acumuladorHtml =0;
+                let erros =0;
                 for (let i = 0; i <= participantesHtml.length - 1; i++){
                     htmlRank.innerHTML+= ` 
                     <tr>
@@ -394,8 +396,15 @@ function conclusao() {
                     </tr>
                 `
                 posicaoHtml++;
+                acumuladorHtml+=participantesHtml[i].pontuacao;
+                erros=(10 * participantesHtml.length - acumuladorHtml);
                 }
-            ct.innerHTML +=  `
+                htmlRank.innerHTML+= ` 
+                    <tr>
+                        <th>Média de acertos:${(acumuladorHtml/participantesHtml.length).toFixed(2)}</th>
+                        <th>Média de erros:${(erros/participantesHtml.length).toFixed(2)}</th>
+                    </tr>`
+                ct.innerHTML +=  `
                 </tbody>
             </table>
 
@@ -411,6 +420,7 @@ function conclusao() {
                 <tbody id="css-rank">`
                 let cssRank = document.querySelector("#css-rank")
                 let posicaoCss = 1;
+                let acumuladorCss=0;
                 for (let i = 0; i <= participantesCss.length - 1; i++){
                     cssRank.innerHTML+= ` 
                     <tr>
@@ -420,7 +430,14 @@ function conclusao() {
                     </tr>
                 `
                 posicaoCss++;
-                }
+                acumuladorCss+=participantesCss[i].pontuacao;
+                erros=(10 * participantesCss.length - acumuladorCss);
+            }
+            cssRank.innerHTML+= ` 
+                <tr>
+                    <th>Média de acertos:${(acumuladorCss/participantesCss.length).toFixed(2)}</th>
+                    <th>Média de erros:${(erros/participantesCss.length).toFixed(2)}</th>
+                </tr>`
             ct.innerHTML +=  `
                 </tbody>
             </table>
@@ -437,6 +454,7 @@ function conclusao() {
                 <tbody id="js-rank">`
                 let jsRank = document.querySelector("#js-rank")
                 let posicaoJs = 1;
+                let acumuladorJs=0;
                 for (let i = 0; i <= participantesJS.length - 1; i++){
                     jsRank.innerHTML+= ` 
                     <tr>
@@ -446,7 +464,14 @@ function conclusao() {
                     </tr>
                 `
                 posicaoJs++;
+                acumuladorJs+=participantesJS[i].pontuacao;
+                erros=(10 * participantesJS.length - acumuladorJs);
                 }
+                jsRank.innerHTML+= ` 
+                    <tr >
+                        <th>Média de acertos:${(acumuladorJs/participantesJS.length).toFixed(2)}</th>
+                        <th>Média de erros:${(erros/participantesJS.length).toFixed(2)}</th>
+                    </tr>`
             ct.innerHTML +=  `
                 </tbody>
             </table>
@@ -574,6 +599,10 @@ function mutar() {
             audio.play();
             idSom++;    
         }   
+}
+
+function mediaErros() {
+    
 }
 
 
