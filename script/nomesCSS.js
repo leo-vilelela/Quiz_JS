@@ -2,7 +2,7 @@ export const participantesCss = [
     {
         nome: "José",
         tempo: "00:10",
-        tema: "HTML",
+        tema: "CSS",
         dataQuiz: "Aug 02 2023",
         pontuacao: 6,
     },
@@ -16,14 +16,14 @@ export const participantesCss = [
     {
         nome: "Pedro",
         tempo: "00:15",
-        tema: "JavaScript",
+        tema: "CSS",
         dataQuiz: "Aug 04 2023",
         pontuacao: 8,
     },
     {
         nome: "Maria",
         tempo: "00:12",
-        tema: "HTML",
+        tema: "CSS",
         dataQuiz: "Aug 05 2023",
         pontuacao: 4,
     },
