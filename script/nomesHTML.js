@@ -9,14 +9,14 @@ export const participantesHtml = [
     {
         nome: "Bianca",
         tempo: "00:08",
-        tema: "CSS",
+        tema: "HTML",
         dataQuiz: "Aug 03 2023",
         pontuacao: 5,
     },
     {
         nome: "Pedro",
         tempo: "00:15",
-        tema: "JavaScript",
+        tema: "HTML",
         dataQuiz: "Aug 04 2023",
         pontuacao: 8,
     },
