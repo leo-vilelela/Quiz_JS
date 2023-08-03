@@ -369,7 +369,7 @@ function conclusao() {
         <p>Média de acertos: <span id="media-acertos">--</span></p>
         <p>Média de erros: <span id="media-erros">--</span></p>
 
-        <div class="rank-tables">
+        
             <table>
                 <caption>Tema HTML</caption>
                 <thead>
