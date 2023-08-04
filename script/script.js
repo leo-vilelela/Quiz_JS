@@ -401,8 +401,10 @@ function conclusao() {
                 }
                 htmlRank.innerHTML+= ` 
                     <tr>
-                        <th>Média de acertos:${(acumuladorHtml/participantesHtml.length).toFixed(2)}</th>
-                        <th>Média de erros:${(erros/participantesHtml.length).toFixed(2)}</th>
+                        <th colspan=3 class="media">Média de acertos:${(acumuladorHtml/participantesHtml.length).toFixed(2)}</th>
+                    </tr>
+                    <tr>   
+                        <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesHtml.length).toFixed(2)}</th>
                     </tr>`
                 ct.innerHTML +=  `
                 </tbody>
@@ -435,8 +437,10 @@ function conclusao() {
             }
             cssRank.innerHTML+= ` 
                 <tr>
-                    <th>Média de acertos:${(acumuladorCss/participantesCss.length).toFixed(2)}</th>
-                    <th>Média de erros:${(erros/participantesCss.length).toFixed(2)}</th>
+                    <th colspan =3 class="media">Média de acertos:${(acumuladorCss/participantesCss.length).toFixed(2)}</th>
+                </tr>
+                <tr>
+                    <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesCss.length).toFixed(2)}</th>
                 </tr>`
             ct.innerHTML +=  `
                 </tbody>
@@ -469,8 +473,10 @@ function conclusao() {
                 }
                 jsRank.innerHTML+= ` 
                     <tr >
-                        <th>Média de acertos:${(acumuladorJs/participantesJS.length).toFixed(2)}</th>
-                        <th>Média de erros:${(erros/participantesJS.length).toFixed(2)}</th>
+                        <th colspan =3 class="media">Média de acertos:${(acumuladorJs/participantesJS.length).toFixed(2)}</th>
+                    </tr>
+                    <tr>    
+                        <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesJS.length).toFixed(2)}</th>
                     </tr>`
             ct.innerHTML +=  `
                 </tbody>
