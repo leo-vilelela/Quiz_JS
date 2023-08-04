@@ -56,6 +56,14 @@ label {
   cursor: pointer;
 }
 
+.media{
+background-color: #08b634;
+
+}
+
+.mediaErros{
+  background-color: #d72013;
+}
 
 button {
   background-color: #007bff;
