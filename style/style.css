@@ -56,12 +56,12 @@ label {
   cursor: pointer;
 }
 
-.media{
-background-color: #08b634;
+.media {
+  background-color: #08b634;
 
 }
 
-.mediaErros{
+.mediaErros {
   background-color: #d72013;
 }
 
@@ -93,10 +93,11 @@ button:hover {
   background-color: white;
   border-radius: 30px;
   padding: 1px;
-  
+
 }
 
-#mode, #mute {
+#mode,
+#mute {
   font-family: 'Roboto Mono';
   background-color: #333;
   display: flex;
@@ -104,7 +105,8 @@ button:hover {
   margin-right: 5px;
 }
 
-#mode:hover, #mute:hover {
+#mode:hover,
+#mute:hover {
   background-color: gray;
 }
 
@@ -134,10 +136,11 @@ thead {
   color: #ffffff;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   text-align: center;
-  
+
 }
 
 caption {
@@ -153,10 +156,3 @@ caption {
   margin-bottom: 10px;
   color: #007bff;
 }
-
-
-
-
-  
-  
-  
