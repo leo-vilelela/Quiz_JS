@@ -591,7 +591,7 @@ function musica() {
     const inicio = document.querySelector("body")
     inicio.innerHTML += `<audio>`
     const audio = document.querySelector("audio");
-    audio.src = "../thinking-time-148496.mp3";
+    audio.src = "./thinking-time-148496.mp3";
     audio.play();
 }
 
