@@ -13,7 +13,7 @@ let nome;
 let escolha;
 let data = Date();
 let acertos = 0;
-let timerInterval; 
+let timerInterval;
 let tempoDecorrido = 0;
 let tempoTotalQuiz = 0;
 let erros = 0;
@@ -76,29 +76,29 @@ function inicio() {
     const content = document.querySelector("#principal");
     content.innerHTML = " ";
     const sub = document.querySelector("#sub");
-    sub.innerText= `Instruções:
+    sub.innerText = `Instruções:
                     -Coloque seu nome
                     -Selecione uma das opções de quiz
                     (HTML, CSS. JAVASCRIPT)
                     -Você terá 5 minutos para 
                     responder 10 questões.
                     -Ao final terá os resultados`
-;
+        ;
     content.innerHTML = `
         <form>
             <label for="nome"> Nome</label>
             <input type="text" id="nome">
             <label for="tema">Tema</label>
             <select name="tema" id="tema">
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="js">JavaScript</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="js">JavaScript</option>
             </select>
             <button type="button" id="btn">Iniciar<br>Quiz</button>
         </form>
         <button type="button" id="mode"><span class="material-symbols-outlined">
-        brightness_medium
-        </span></button>
+            brightness_medium
+            </span></button>
     `;
 
     const btn = document.querySelector("#btn");
@@ -110,7 +110,7 @@ function inicio() {
         escolha = document.querySelector("#tema");
         nome = document.querySelector("#nome").value;
         if (nome === "") {
-        alert("Por favor, insira seu nome antes de continuar.");
+            alert("Por favor, insira seu nome antes de continuar.");
         } else if (escolha.value == "css") {
             idSom = 0;
             musica();
@@ -128,7 +128,7 @@ function inicio() {
         const duration = 5 * 60; // 5 minutos em segundos
         const display = document.querySelector("#timer");
         startTimer(duration, display);
-        });
+    });
 }
 
 
@@ -149,9 +149,9 @@ function jsQuiz() {
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
             <div class="resposta">
-            <label>
-                <input type="radio" name="resposta" value="${i}">
-                ${quizJS[contadorQuestao]?.alternativas[i]}
+                <label>
+                    <input type="radio" name="resposta" value="${i}">
+                    ${quizJS[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
         `
@@ -160,38 +160,38 @@ function jsQuiz() {
         <div class="proxima">
             <button type="button" id="next">Proxima questão</button>
         </div>
-            <button type="button" id="start">Reiniciar Quiz</button>
-            <button type="button" id="mode"><span class="material-symbols-outlined">
+        <button type="button" id="start">Reiniciar Quiz</button>
+        <button type="button" id="mode"><span class="material-symbols-outlined">
             brightness_medium
             </span></button>
-            <button type="button" id="mute"><span class="material-symbols-outlined">
+        <button type="button" id="mute"><span class="material-symbols-outlined">
             play_circle
             </span></button>
     `
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-    contadorQuestao++;
-    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
-    
-    contarAcertos(selectedAnswer.value, quizJS);
-    
-    if (contadorQuestao === 10) {
-        conclusao();
-    } else {
-        if (selectedAnswer?.value !== undefined) {
-            jsQuiz();
+        contadorQuestao++;
+        const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+
+        contarAcertos(selectedAnswer.value, quizJS);
+
+        if (contadorQuestao === 10) {
+            conclusao();
         } else {
-            alert("Por favor, selecione uma opção.");
+            if (selectedAnswer?.value !== undefined) {
+                jsQuiz();
+            } else {
+                alert("Por favor, selecione uma opção.");
+            }
         }
-    }
-    
-});
-const mode = document.querySelector("#mode");
-        mode.addEventListener("click", () => {
-            changeMode();
-        });
+
+    });
+    const mode = document.querySelector("#mode");
+    mode.addEventListener("click", () => {
+        changeMode();
+    });
     reiniciar();
-const mute = document.querySelector("#mute");
+    const mute = document.querySelector("#mute");
     mute.addEventListener("click", () => {
         mutar();
     });
@@ -215,8 +215,8 @@ function htmlQuiz() {
         content.innerHTML += `
             <div class="resposta">
                 <label>
-                <input type="radio" name="resposta" value="${i}">
-                ${quizHTML[contadorQuestao]?.alternativas[i]}
+                    <input type="radio" name="resposta" value="${i}">
+                    ${quizHTML[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
         `
@@ -224,45 +224,45 @@ function htmlQuiz() {
     content.innerHTML += `
         <div class="proxima">
             <button type="button" id="next">Proxima questão</button>
-            </div>
-            <button type="button" id="start">Reiniciar Quiz</button>
-            <button type="button" id="mode"><span class="material-symbols-outlined">
+        </div>
+        <button type="button" id="start">Reiniciar Quiz</button>
+        <button type="button" id="mode"><span class="material-symbols-outlined">
             brightness_medium
             </span></button>
-            <button type="button" id="mute"><span class="material-symbols-outlined">
+        <button type="button" id="mute"><span class="material-symbols-outlined">
             play_circle
             </span></button>
             `
-            
-            
+
+
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-    contadorQuestao++;
-    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
-    
-    contarAcertos(selectedAnswer.value, quizHTML);
-    
-    if (contadorQuestao === 10) {
-        conclusao();
-    } else {
-        if (selectedAnswer?.value !== undefined) {
-            htmlQuiz();
+        contadorQuestao++;
+        const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+
+        contarAcertos(selectedAnswer.value, quizHTML);
+
+        if (contadorQuestao === 10) {
+            conclusao();
         } else {
-            alert("Por favor, selecione uma opção.");
+            if (selectedAnswer?.value !== undefined) {
+                htmlQuiz();
+            } else {
+                alert("Por favor, selecione uma opção.");
+            }
         }
-    }
-});
+    });
     const mode = document.querySelector("#mode");
     mode.addEventListener("click", () => {
         changeMode();
-    });   
-reiniciar();
-const mute = document.querySelector("#mute");
-        mute.addEventListener("click", () => {
-            mutar();
-        });
+    });
+    reiniciar();
+    const mute = document.querySelector("#mute");
+    mute.addEventListener("click", () => {
+        mutar();
+    });
 
-        reiniciar();
+    reiniciar();
 }
 
 // Função que inicia o Quiz CSS
@@ -277,59 +277,59 @@ function cssQuiz() {
             </div>
         </div>
     `
-    
+
     for (let i = 0; i <= 3; i++) {
         content.innerHTML += `
             <div class="resposta">
-            <label>
-            <input type="radio" name="resposta" value="${i}">
-            ${quizCSS[contadorQuestao]?.alternativas[i]}
+                <label>
+                    <input type="radio" name="resposta" value="${i}">
+                    ${quizCSS[contadorQuestao]?.alternativas[i]}
                 </label>
             </div>
         `
     };
     content.innerHTML += `
     <div class="proxima">
-    <button type="button" id="next">Proxima questão</button>
+        <button type="button" id="next">Proxima questão</button>
     </div>
     <button type="button" id="start">Reiniciar Quiz</button>
     <button type="button" id="mode"><span class="material-symbols-outlined">
-    brightness_medium
-    </span></button>
+        brightness_medium
+        </span></button>
     <button type="button" id="mute"><span class="material-symbols-outlined">
-    play_circle
-    </span></button>
+        play_circle
+        </span></button>
     `
 
     const next = document.querySelector("#next");
     next.addEventListener("click", () => {
-    contadorQuestao++;
-    const selectedAnswer = document.querySelector("input[name='resposta']:checked");
-    
-    contarAcertos(selectedAnswer.value, quizCSS);
-    
-    if (contadorQuestao === 10) {
-        conclusao();
-    } else {
-        if (selectedAnswer?.value !== undefined) {
-            cssQuiz();
+        contadorQuestao++;
+        const selectedAnswer = document.querySelector("input[name='resposta']:checked");
+
+        contarAcertos(selectedAnswer.value, quizCSS);
+
+        if (contadorQuestao === 10) {
+            conclusao();
         } else {
-            alert("Por favor, selecione uma opção.");
+            if (selectedAnswer?.value !== undefined) {
+                cssQuiz();
+            } else {
+                alert("Por favor, selecione uma opção.");
+            }
         }
-    }
-});
+    });
 
-const mode = document.querySelector("#mode");
-mode.addEventListener("click", () => {
-    changeMode();
-});
-reiniciar();
-const mute = document.querySelector("#mute");
-        mute.addEventListener("click", () => {
-            mutar();
-        });
+    const mode = document.querySelector("#mode");
+    mode.addEventListener("click", () => {
+        changeMode();
+    });
+    reiniciar();
+    const mute = document.querySelector("#mute");
+    mute.addEventListener("click", () => {
+        mutar();
+    });
 
-        reiniciar();
+    reiniciar();
 }
 
 if (contadorQuestao === 10) {
@@ -340,9 +340,9 @@ if (contadorQuestao === 10) {
 
 // Função que monta a tela de resultados e insights
 function conclusao() {
-    
+
     validaEscolha(escolha);
-    
+
     let ct = document.querySelector("#principal")
     ct.innerHTML = `
         <h1>Resultados</h1> 
@@ -359,14 +359,14 @@ function conclusao() {
                 </tr>
             </thead>
             <tbody id="quiz-results">
-            <tr>
-                <th>${nome}</th>
-                <th>${formatTempo(tempoTotalQuiz)}</th> <!-- Use a função formatTempo para exibir o tempo formatado -->
-                <th>${escolha.value}</th>
-                <th>${data.slice(4, 21)}</th>
-                <th>${acertos}/10</th>
-            </tr>
-        </tbody>
+                <tr>
+                    <th>${nome}</th>
+                    <th>${formatTempo(tempoTotalQuiz)}</th> <!-- Use a função formatTempo para exibir o tempo formatado -->
+                    <th>${escolha.value}</th>
+                    <th>${data.slice(4, 21)}</th>
+                    <th>${acertos}/10</th>
+                </tr>
+            </tbody>
         </table>
 
         <p>Média de acertos: <span id="media-acertos">--</span></p>
@@ -383,30 +383,30 @@ function conclusao() {
                     </tr>
                 </thead>
                 <tbody id="html-rank">`
-                let htmlRank = document.querySelector("#html-rank")
-                let posicaoHtml = 1;
-                let acumuladorHtml =0;
-                let erros =0;
-                for (let i = 0; i <= participantesHtml.length - 1; i++){
-                    htmlRank.innerHTML+= ` 
+    let htmlRank = document.querySelector("#html-rank")
+    let posicaoHtml = 1;
+    let acumuladorHtml = 0;
+    let erro = 0;
+    for (let i = 0; i <= participantesHtml.length - 1; i++) {
+        htmlRank.innerHTML += ` 
                     <tr>
                         <th>${posicaoHtml}° Posição</th>
                         <th>${participantesHtml[i].nome}</th>
                         <th>${participantesHtml[i].pontuacao}/10</th>
                     </tr>
                 `
-                posicaoHtml++;
-                acumuladorHtml+=participantesHtml[i].pontuacao;
-                erros=(10 * participantesHtml.length - acumuladorHtml);
-                }
-                htmlRank.innerHTML+= ` 
+        posicaoHtml++;
+        acumuladorHtml += participantesHtml[i].pontuacao;
+        erro = (10 * participantesHtml.length - acumuladorHtml);
+    }
+    htmlRank.innerHTML += ` 
                     <tr>
-                        <th colspan=3 class="media">Média de acertos:${(acumuladorHtml/participantesHtml.length).toFixed(2)}</th>
+                        <th colspan=3 class="media">Média de acertos:${(acumuladorHtml / participantesHtml.length).toFixed(2)}</th>
                     </tr>
                     <tr>   
-                        <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesHtml.length).toFixed(2)}</th>
+                        <th colspan =3 class="mediaErros">Média de erros:${(erro / participantesHtml.length).toFixed(2)}</th>
                     </tr>`
-                ct.innerHTML +=  `
+    ct.innerHTML += `
                 </tbody>
             </table>
 
@@ -419,73 +419,73 @@ function conclusao() {
                         <th>Pontuação</th>
                     </tr>
                 </thead>
-                <tbody id="css-rank">`
-                let cssRank = document.querySelector("#css-rank")
-                let posicaoCss = 1;
-                let acumuladorCss=0;
-                for (let i = 0; i <= participantesCss.length - 1; i++){
-                    cssRank.innerHTML+= ` 
+            <tbody id="css-rank">`
+    let cssRank = document.querySelector("#css-rank")
+    let posicaoCss = 1;
+    let acumuladorCss = 0;
+    for (let i = 0; i <= participantesCss.length - 1; i++) {
+        cssRank.innerHTML += ` 
                     <tr>
                         <th>${posicaoCss}° Posição</th>
                         <th>${participantesCss[i].nome}</th>
                         <th>${participantesCss[i].pontuacao}/10</th>
                     </tr>
                 `
-                posicaoCss++;
-                acumuladorCss+=participantesCss[i].pontuacao;
-                erros=(10 * participantesCss.length - acumuladorCss);
-            }
-            cssRank.innerHTML+= ` 
-                <tr>
-                    <th colspan =3 class="media">Média de acertos:${(acumuladorCss/participantesCss.length).toFixed(2)}</th>
-                </tr>
-                <tr>
-                    <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesCss.length).toFixed(2)}</th>
-                </tr>`
-            ct.innerHTML +=  `
-                </tbody>
+        posicaoCss++;
+        acumuladorCss += participantesCss[i].pontuacao;
+        erro = (10 * participantesCss.length - acumuladorCss);
+    }
+    cssRank.innerHTML += ` 
+                    <tr>
+                        <th colspan =3 class="media">Média de acertos:${(acumuladorCss / participantesCss.length).toFixed(2)}</th>
+                    </tr>
+                    <tr>
+                        <th colspan =3 class="mediaErros">Média de erros:${(erro / participantesCss.length).toFixed(2)}</th>
+                    </tr>`
+    ct.innerHTML += `
+            </tbody>
             </table>
 
             <table>
-                <caption>Tema JavaScript</caption>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Nome</th>
-                        <th>Pontuação</th>
-                    </tr>
-                </thead>
-                <tbody id="js-rank">`
-                let jsRank = document.querySelector("#js-rank")
-                let posicaoJs = 1;
-                let acumuladorJs=0;
-                for (let i = 0; i <= participantesJS.length - 1; i++){
-                    jsRank.innerHTML+= ` 
-                    <tr>
-                        <th>${posicaoJs}° Posição</th>
-                        <th>${participantesJS[i].nome}</th>
-                        <th>${participantesJS[i].pontuacao}/10</th>
-                    </tr>
+            <caption>Tema JavaScript</caption>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Nome</th>
+                    <th>Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="js-rank">`
+    let jsRank = document.querySelector("#js-rank")
+    let posicaoJs = 1;
+    let acumuladorJs = 0;
+    for (let i = 0; i <= participantesJS.length - 1; i++) {
+        jsRank.innerHTML += ` 
+                <tr>
+                    <th>${posicaoJs}° Posição</th>
+                    <th>${participantesJS[i].nome}</th>
+                    <th>${participantesJS[i].pontuacao}/10</th>
+                </tr>
                 `
-                posicaoJs++;
-                acumuladorJs+=participantesJS[i].pontuacao;
-                erros=(10 * participantesJS.length - acumuladorJs);
-                }
-                jsRank.innerHTML+= ` 
-                    <tr >
-                        <th colspan =3 class="media">Média de acertos:${(acumuladorJs/participantesJS.length).toFixed(2)}</th>
-                    </tr>
-                    <tr>    
-                        <th colspan =3 class="mediaErros">Média de erros:${(erros/participantesJS.length).toFixed(2)}</th>
-                    </tr>`
-            ct.innerHTML +=  `
+        posicaoJs++;
+        acumuladorJs += participantesJS[i].pontuacao;
+        erro = (10 * participantesJS.length - acumuladorJs);
+    }
+    jsRank.innerHTML += ` 
+                <tr >
+                    <th colspan =3 class="media">Média de acertos:${(acumuladorJs / participantesJS.length).toFixed(2)}</th>
+                </tr>
+                <tr>    
+                    <th colspan =3 class="mediaErros">Média de erros:${(erro / participantesJS.length).toFixed(2)}</th>
+                </tr>`
+    ct.innerHTML += `
                 </tbody>
             </table>
         </div>
         <button type="button" id="start">Reiniciar Quiz</button>
         <button type="button" id="mode"><span class="material-symbols-outlined">
-        brightness_medium
-        </span></button>
+            brightness_medium
+            </span></button>
         <button type="button" id="mute"><span class="material-symbols-outlined">
             play_circle
             </span></button>
@@ -512,42 +512,42 @@ function conclusao() {
 
         return hours + ":" + minutes + ":" + seconds;
     }
-        
-        const tit = document.querySelector("#titulo")
-        const sub = document.querySelector("#sub")
-        tit.innerText = `Quiz SoulCode`
-        sub.innerText = ``
-        
-        const mode = document.querySelector("#mode");
-        mode.addEventListener("click", () => {
-            changeMode();
-        });
-        const mute = document.querySelector("#mute");
-        mute.addEventListener("click", () => {
-            mutar();
-        });
-        reiniciar();
-        acertos = 0;
-        pausarCronometro();
-        
-        function organizaRank(){
-            participantesHtml.sort((a, b) =>  b.pontuacao - a.pontuacao );
-            participantesCss.sort((a, b) =>  b.pontuacao - a.pontuacao );
-            participantesJS.sort((a, b) =>  b.pontuacao - a.pontuacao );
+
+    const tit = document.querySelector("#titulo")
+    const sub = document.querySelector("#sub")
+    tit.innerText = `Quiz SoulCode`
+    sub.innerText = ``
+
+    const mode = document.querySelector("#mode");
+    mode.addEventListener("click", () => {
+        changeMode();
+    });
+    const mute = document.querySelector("#mute");
+    mute.addEventListener("click", () => {
+        mutar();
+    });
+    reiniciar();
+    acertos = 0;
+    pausarCronometro();
+
+    function organizaRank() {
+        participantesHtml.sort((a, b) => b.pontuacao - a.pontuacao);
+        participantesCss.sort((a, b) => b.pontuacao - a.pontuacao);
+        participantesJS.sort((a, b) => b.pontuacao - a.pontuacao);
+    }
+
+    function validaEscolha(escolha) {
+        if (escolha.value == "html") {
+            participantesHtml.push({ nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos })
+            organizaRank();
+        } else if (escolha.value == "css") {
+            participantesCss.push({ nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos })
+            organizaRank();
+        } else {
+            participantesJS.push({ nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos })
+            organizaRank();
         }
-        
-        function validaEscolha(escolha){
-            if(escolha.value == "html"){
-                participantesHtml.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
-                organizaRank();
-            }else if(escolha.value == "css"){
-                participantesCss.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
-                organizaRank();
-            }else{
-                participantesJS.push({nome: nome, tempo: formatTempo(tempoTotalQuiz), tema: escolha.value, dataQuiz: data.slice(4, 21), pontuacao: acertos} )
-                organizaRank();
-            }
-        }
+    }
 }
 
 // Função que calcula os acertos
@@ -567,44 +567,44 @@ function contarAcertos(answer, subject) {
 function reiniciar() {
     const reiniciarBtn = document.querySelector("#start");
     reiniciarBtn.addEventListener("click", () => {
-      inicio();
-      const audio = document.querySelector("audio");
-      audio.pause();
-      pausarCronometro(); // Pausa o cronômetro
-      IniciarCronometro(); // Chama a função para reiniciar o cronômetro
+        inicio();
+        const audio = document.querySelector("audio");
+        audio.pause();
+        pausarCronometro(); // Pausa o cronômetro
+        IniciarCronometro(); // Chama a função para reiniciar o cronômetro
     });
-  }
+}
 
 // Função para alterar entre os temas Dark e Light
-function changeMode() {   
+function changeMode() {
     idMode++;
     const body = document.querySelector("body");
-        if((idMode % 2) == 0){
-            body.style.backgroundColor = "#27292b";
-        }else{
-            body.style.backgroundColor = '#FFFFFF';
-        }
+    if ((idMode % 2) == 0) {
+        body.style.backgroundColor = "#27292b";
+    } else {
+        body.style.backgroundColor = '#FFFFFF';
+    }
 }
 
 //  Função que inicia a execução da trilha de audio
 function musica() {
     const inicio = document.querySelector("body")
-            inicio.innerHTML+=`<audio>`
-            const audio = document.querySelector("audio");
-            audio.src = "../thinking-time-148496.mp3";
-            audio.play();
+    inicio.innerHTML += `<audio>`
+    const audio = document.querySelector("audio");
+    audio.src = "../thinking-time-148496.mp3";
+    audio.play();
 }
 
 //  Função que controla a execução da trilha de audio
-function mutar() {        
-        const audio = document.querySelector("audio");
-        if((idSom % 2) === 0 ){
-            audio.pause();
-            idSom++;    
-        }else{
-            audio.play();
-            idSom++;    
-        }   
+function mutar() {
+    const audio = document.querySelector("audio");
+    if ((idSom % 2) === 0) {
+        audio.pause();
+        idSom++;
+    } else {
+        audio.play();
+        idSom++;
+    }
 }
 
 
